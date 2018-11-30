@@ -42,6 +42,20 @@ module ShiftRows_tb;
         .row4_out(row4_out)
     );
     
-    
+    initial begin
+        row1 = 32'h63EB_9FA0;
+        row2 = 32'hC02F_9392;
+        row3 = 32'hAB30_AFC7;
+        row4 = 32'h20CB_2BA2;
+        
+        #10;
+        
+        row1 = 32'h1AAB_0127;
+        row2 = 32'hB45B_3041;
+        row3 = 32'hD3BA_E9D2;
+        row4 = 32'hAAE8_BB9A;
+        
+        #10;
+    end
     
 endmodule
