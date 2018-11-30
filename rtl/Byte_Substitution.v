@@ -199,7 +199,7 @@ module Byte_Substitution(
             8'h9f : substituted_byte = 8'hdb;
             
             8'ha0 : substituted_byte = 8'he0;
-            8'ha1 : substituted_byte = 8'h21;
+            8'ha1 : substituted_byte = 8'h32;
             8'ha2 : substituted_byte = 8'h3a;
             8'ha3 : substituted_byte = 8'h0a;
             8'ha4 : substituted_byte = 8'h49;

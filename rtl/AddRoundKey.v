@@ -57,11 +57,18 @@ module AddRoundKey(
             roundkey = key_in;
         end else begin
             //calculate round constant
-            rc_calc = 1;
-            for(i = 0; i < round - 1; i = i + 1) begin
-                rc_calc = rc_calc * 2;
-            end
-            round_constant = {rc_calc, 24'd0};
+            case(round)
+                1 : round_constant = 32'h01_000000;
+                2 : round_constant = 32'h02_000000;
+                3 : round_constant = 32'h04_000000;
+                4 : round_constant = 32'h08_000000;
+                5 : round_constant = 32'h10_000000;
+                6 : round_constant = 32'h20_000000;
+                7 : round_constant = 32'h40_000000;
+                8 : round_constant = 32'h80_000000;
+                9 : round_constant = 32'h1B_000000;
+                10 : round_constant = 32'h36_000000;
+            endcase
             
             //calculate words
             w3_shift = {key_in[23:0], key_in[31:24]};

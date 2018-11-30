@@ -43,8 +43,6 @@ module AddRoundKey_tb;
             $display("test 1 failed");
         end
         
-        //#10;
-        
         round = 1;
         key_in = 128'h5468_6174_7320_6D79_204B_756E_6720_4675;
         #10;
@@ -54,8 +52,6 @@ module AddRoundKey_tb;
         end else begin
             $display("test 2 failed");
         end
-        
-        //#10;
         
         round = 2;
         key_in = 128'hE232_FCF1_9112_9188_B159_E4E6_D679_A293;
@@ -67,8 +63,6 @@ module AddRoundKey_tb;
             $display("test 3 failed");
         end
         
-        //#10;
-        
         round = 3;
         key_in = 128'h5608_2007_C71A_B18F_7643_5569_A03A_F7FA;
         #10;
@@ -79,9 +73,17 @@ module AddRoundKey_tb;
             $display("test 4 failed");
         end
         
-        //#10;
+        round = 9;
+        key_in = 128'h8E51_EF21_FABB_4522_E43D_7A06_5695_4B6C;
+        #10;
+        if(roundkey == 128'hBFE2_BF90_4559_FAB2_A164_80B4_F7F1_CBD8) begin
+            count = count + 1;
+            $display("test 5 passed");
+        end else begin
+            $display("test 5 failed");
+        end
         
-        if(count == 4) begin
+        if(count == 5) begin
             $display("all tests passed");
         end else begin
             $display("tests failed");
