@@ -34,6 +34,6 @@ module ShiftRows(
     assign row1_out = row1;
     assign row2_out = {row2[23:0], row2[31:24]};
     assign row3_out = {row3[15:0], row3[31:16]};
-    assign row3_out = {row4[7:0], row4[31:8]};
+    assign row4_out = {row4[7:0], row4[31:8]};
     
 endmodule

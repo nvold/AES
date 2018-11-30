@@ -26,6 +26,7 @@ module Encryption(
     input [127:0] plaintext,
     input [127:0] key,
     output reg [127:0] cyphertext,
+    output [127:0] data_check,
     output [3:0] state_check
     );
     
@@ -40,7 +41,9 @@ module Encryption(
     reg [3:0] next_state;
     reg [3:0] round;
     
-    reg [127:0] data;
+    reg  [127:0] data = 0;
+    reg  [127:0] key_in;
+    wire [127:0] roundkey;
     wire [127:0] SB_data;
     wire [127:0] SR_data;
     wire [127:0] MC_data;
@@ -61,16 +64,17 @@ module Encryption(
     MixColumns mcol (.data(data),
                      .data_out(MC_data)
                      );
-    AddRoundKey ark (.data(data),
-                     .key(key),
-                     .data_out(RK_data)
+    AddRoundKey ark (.round(round),
+                     .key_in(key_in),
+                     .roundkey(roundkey)
                      );
     
-    always @(*) begin
+    always @(state) begin
         case(state)
             Idle : begin
                 //state actions
                 round = 0;
+                key_in = key;
                 data = plaintext;
                 
                 //next state logic
@@ -107,8 +111,9 @@ module Encryption(
             end
             Round_Key : begin
                 //state actions
-                data = RK_data;
+                data = data ^ roundkey;
                 round = round + 1;
+                key_in = roundkey;
                 
                 //next state logic
                 if(round > 10) begin
@@ -129,6 +134,7 @@ module Encryption(
     end
     
     assign state_check = state;
+    assign data_check = data;
     
     always @(posedge clk) begin
         state <= next_state;

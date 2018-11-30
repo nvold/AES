@@ -126,7 +126,7 @@ module Byte_Substitution(
             8'h5a : substituted_byte = 8'hbe;
             8'h5b : substituted_byte = 8'h39;
             8'h5c : substituted_byte = 8'h4a;
-            8'h5d : substituted_byte = 8'h5c;
+            8'h5d : substituted_byte = 8'h4c;
             8'h5e : substituted_byte = 8'h58;
             8'h5f : substituted_byte = 8'hcf;
             //6x
